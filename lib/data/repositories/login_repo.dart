@@ -18,7 +18,8 @@ class AuthRepo {
           "email": email,
           "password": password
         }).then((value) {
-      if (value.statusCode == "201") {
+      if (value.statusCode == 200) {
+        print('Success');
         return loginResponseModelFromJson(jsonDecode(value.body));
       } else {
         print('error:${value.statusCode}');
@@ -32,16 +33,11 @@ class AuthRepo {
     final loginResponseModel = await _apiClient.post(
         postUrl: ApiConstants.login,
         body: {
-          "username": userName,
           "email": email,
           "password": password
         }).then((value) {
-      if (value.statusCode == "200") {
-        print('response = ${jsonDecode(value.body)}');
-        return loginResponseModelFromJson(jsonDecode(value.body));
-      } else {
-        print('error:${value.statusCode}');
-      }
+      print('response = ${jsonDecode(value)}');
+      return loginResponseModelFromJson(value);
     });
     return loginResponseModel;
   }
