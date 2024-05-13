@@ -13,12 +13,15 @@ import 'bloc/password_bloc/password_bloc.dart';
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 
-  final TextEditingController usernameController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  PasswordBloc passwordBloc = PasswordBloc()
+    ..add(OnTapEvent(onTap: false));
 
   @override
   Widget build(BuildContext context) {
-    PasswordBloc passwordBloc = PasswordBloc()..add(OnTapEvent(onTap: true));
+    print('object');
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.primaryBgColor,
@@ -61,14 +64,41 @@ class LoginPage extends StatelessWidget {
                 SizedBox(
                   height: 10.h,
                 ),
-                passwordTextField(passwordBloc),
+                BlocProvider(
+                  create: (context) => PasswordBloc()..add(OnTapEvent(onTap: false)),
+                  child: BlocBuilder<PasswordBloc, PasswordState>(
+                    builder: (context, state) {
+                      if (state is PasswordLoadedState) {
+                        print(state);
+                        return CommonTextField(
+                          labelText: 'Password',
+                          controller: passwordController,
+                          obscureText: state.onTap,
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              BlocProvider.of<PasswordBloc>(context).add(OnTapEvent(onTap: state.onTap));
+                            },
+                            child: Icon(
+                              state.onTap == true ? Icons.visibility_off : Icons.remove_red_eye_outlined,
+                              color: Colors.white,
+                              size: 20.h,
+                            ),
+                          ),
+                        );
+                      }
+                      return SizedBox();
+                    },
+                  ),
+                ),
                 SizedBox(
                   height: 10.h,
                 ),
                 CustomButton(
                     title: Strings.logIn,
                     onPressed: () async {
-                      await AuthRepo().login(email: usernameController.text, password: passwordController.text);
+                      await AuthRepo().login(email: usernameController.text, password: passwordController.text,onSuccess: (){},onError:(){
+                      SnackBar(content: Text('context'));
+                      });
                       Navigator.pushNamed(context, '/homePage');
                     }),
                 SizedBox(
@@ -86,17 +116,17 @@ class LoginPage extends StatelessWidget {
                 children: [
                   Expanded(
                     child: GestureDetector(
-                      onTap: (){
-
+                      onTap: () {
+                        Navigator.pushNamed(context, '/usernameScreen');
                       },
                       child: Container(
                         height: 40.h,
                         decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20.r)), border: Border.all(color: Colors.blue)),
                         child: Center(
                             child: Text(
-                          Strings.createNewAccount,
-                          style: TextStyle(color: Colors.blue),
-                        )),
+                              Strings.createNewAccount,
+                              style: TextStyle(color: Colors.blue),
+                            )),
                       ),
                     ),
                   ),
@@ -109,29 +139,4 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget passwordTextField(PasswordBloc passwordBloc) {
-    return BlocBuilder<PasswordBloc, PasswordState>(
-      bloc: passwordBloc,
-      builder: (context, state) {
-        if (state is PasswordLoadedState) {
-          return CommonTextField(
-            labelText: 'Password',
-            controller: passwordController,
-            obscureText: state.onTap,
-            suffixIcon: GestureDetector(
-              onTap: () {
-                passwordBloc.add(OnTapEvent(onTap: state.onTap));
-              },
-              child: Icon(
-                state.onTap == true ? Icons.visibility_off : Icons.remove_red_eye_outlined,
-                color: Colors.white,
-                size: 20.h,
-              ),
-            ),
-          );
-        }
-        return SizedBox();
-      },
-    );
-  }
 }

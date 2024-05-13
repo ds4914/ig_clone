@@ -1,7 +1,7 @@
 part of 'password_bloc.dart';
 
 @immutable
-sealed class PasswordEvent {}
+abstract class PasswordEvent {}
 
 
 class OnTapEvent extends PasswordEvent{

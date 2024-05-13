@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:newproject/presentation/constants/app_colors.dart';
 
 class CommonTextField extends StatelessWidget {
   final String? labelText;
   final Function(String)? onChanged;
   final bool? obscureText;
+  final Color? hintTextColor;
   final Widget? suffixIcon;
  final TextEditingController? controller;
   const CommonTextField(
@@ -14,10 +16,11 @@ class CommonTextField extends StatelessWidget {
       this.labelText,
         this.controller,
       this.onChanged,
+        this.hintTextColor,
       this.suffixIcon});
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       cursorColor: Colors.white,
       onChanged: onChanged,
       controller: controller,
@@ -34,7 +37,7 @@ class CommonTextField extends StatelessWidget {
           focusColor: Colors.white24,
           focusedBorder: InputBorder.none,
           labelText: labelText,
-          labelStyle: const TextStyle(color: Colors.white70),
+          labelStyle: TextStyle(color: hintTextColor?? Colors.white70),
           disabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.white24, width: 0.0),
           ),
