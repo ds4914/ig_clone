@@ -7,7 +7,7 @@ part 'password_state.dart';
 class PasswordBloc extends Bloc<PasswordEvent, PasswordState> {
   PasswordBloc() : super(PasswordInitial()) {
     on<OnTapEvent>((event, emit) {
-      emit(PasswordLoadedState(onTap: event.onTap));
+      emit(PasswordLoadedState(onTap: event.onTap == true ? false : true));
     });
   }
 }
