@@ -39,15 +39,9 @@ class AuthRepo {
     required Function onError,
   }) async {
     await _apiClient.post(postUrl: ApiConstants.login, body: {"email": email, "password": password}).then((value) {
-      if (value.statusCode == 200) {
-        onSuccess();
-        print('Success');
-        return loginResponseModelFromJson(jsonDecode(value.body));
-      } else {
-        onError();
-        print('error:${value.body}');
-        return errorResponseModelFromJson(value.body);
-      }
+      onSuccess();
+      print('Success');
+      return loginResponseModelFromJson(jsonDecode(value));
     });
   }
 }
