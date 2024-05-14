@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:newproject/data/repositories/login_repo.dart';
 import 'package:newproject/presentation/constants/app_colors.dart';
+import 'package:newproject/presentation/pages/login/bloc/auth_bloc/auth_bloc.dart';
 import 'package:newproject/utils/common_widgets/common_textfield.dart';
 import 'package:newproject/utils/common_widgets/custom_button.dart';
 
@@ -16,9 +17,8 @@ class LoginPage extends StatelessWidget {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  PasswordBloc passwordBloc = PasswordBloc()
-    ..add(OnTapEvent(onTap: false));
-
+  PasswordBloc passwordBloc = PasswordBloc()..add(OnTapEvent(onTap: false));
+  AuthBloc authBloc = AuthBloc();
   @override
   Widget build(BuildContext context) {
     print('object');
@@ -96,9 +96,7 @@ class LoginPage extends StatelessWidget {
                 CustomButton(
                     title: Strings.logIn,
                     onPressed: () async {
-                      await AuthRepo().login(email: usernameController.text, password: passwordController.text,onSuccess: (){},onError:(){
-                      SnackBar(content: Text('context'));
-                      });
+                      authBloc.add(LoginEvent(email: usernameController.text, password: passwordController.text));
                       Navigator.pushNamed(context, '/homePage');
                     }),
                 SizedBox(
@@ -124,9 +122,9 @@ class LoginPage extends StatelessWidget {
                         decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20.r)), border: Border.all(color: Colors.blue)),
                         child: Center(
                             child: Text(
-                              Strings.createNewAccount,
-                              style: TextStyle(color: Colors.blue),
-                            )),
+                          Strings.createNewAccount,
+                          style: TextStyle(color: Colors.blue),
+                        )),
                       ),
                     ),
                   ),
@@ -138,5 +136,4 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
-
 }
