@@ -15,10 +15,13 @@ class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 
   TextEditingController usernameController = TextEditingController();
+
   TextEditingController passwordController = TextEditingController();
 
   PasswordBloc passwordBloc = PasswordBloc()..add(OnTapEvent(onTap: false));
+
   AuthBloc authBloc = AuthBloc();
+
   @override
   Widget build(BuildContext context) {
     print('object');
@@ -33,7 +36,7 @@ class LoginPage extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.w),
+        padding: EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -55,14 +58,14 @@ class LoginPage extends StatelessWidget {
                   scale: 13,
                 ),
                 SizedBox(
-                  height: 50.h,
+                  height: 50,
                 ),
                 CommonTextField(
                   controller: usernameController,
                   labelText: 'Username,email or Phone number',
                 ),
                 SizedBox(
-                  height: 10.h,
+                  height: 10,
                 ),
                 BlocProvider(
                   create: (context) => PasswordBloc()..add(OnTapEvent(onTap: false)),
@@ -81,7 +84,7 @@ class LoginPage extends StatelessWidget {
                             child: Icon(
                               state.onTap == true ? Icons.visibility_off : Icons.remove_red_eye_outlined,
                               color: Colors.white,
-                              size: 20.h,
+                              size: 20,
                             ),
                           ),
                         );
@@ -91,25 +94,41 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 10.h,
+                  height: 10,
                 ),
-                CustomButton(
-                    title: Strings.logIn,
-                    onPressed: () async {
-                      authBloc.add(LoginEvent(email: usernameController.text, password: passwordController.text));
+                BlocListener<AuthBloc, AuthState>(
+                  bloc: authBloc,
+                  listener: (context, state) {
+                    if (state is LoginLoadedState) {
+                      print('object=${state.loginResponseModel?.message}');
+                      // if (state.loginResponseModel?.message == 'Login Successful') {
                       Navigator.pushNamed(context, '/homePage');
-                    }),
+                      // } else {
+                      //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      //     content: Text('state.loginResponseModel!.message!'),
+                      //     backgroundColor: AppColors.whiteColor,
+                      //   ));
+                      // }
+                    }
+                    // TODO: implement listener
+                  },
+                  child: CustomButton(
+                      title: Strings.logIn,
+                      onPressed: () async {
+                        authBloc.add(LoginEvent(email: usernameController.text, password: passwordController.text));
+                      }),
+                ),
                 SizedBox(
-                  height: 10.h,
+                  height: 10,
                 ),
                 Text(
                   Strings.forgottenPassword,
-                  style: TextStyle(color: Colors.white, fontSize: 16.sp),
+                  style: TextStyle(color: Colors.white, fontSize: 16),
                 )
               ],
             ),
             Padding(
-              padding: EdgeInsets.only(bottom: 50.h),
+              padding: EdgeInsets.only(bottom: 50),
               child: Row(
                 children: [
                   Expanded(
@@ -118,8 +137,8 @@ class LoginPage extends StatelessWidget {
                         Navigator.pushNamed(context, '/usernameScreen');
                       },
                       child: Container(
-                        height: 40.h,
-                        decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20.r)), border: Border.all(color: Colors.blue)),
+                        height: 40,
+                        decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)), border: Border.all(color: Colors.blue)),
                         child: Center(
                             child: Text(
                           Strings.createNewAccount,

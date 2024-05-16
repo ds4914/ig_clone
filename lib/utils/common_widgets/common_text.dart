@@ -15,7 +15,7 @@ class CommonText extends StatelessWidget {
       title,
       style: TextStyle(
           color: textColor ?? Colors.white,
-          fontSize: fontSize ?? 16.sp,
+          fontSize: fontSize ?? 16,
           fontWeight: fontWeight ?? FontWeight.w400),
     );
   }
@@ -34,7 +34,7 @@ class CommonIcon extends StatelessWidget {
       child: Icon(
         icon,
         color: iconColor ?? Colors.white,
-        size: size ?? 30.sp,
+        size: size ?? 30,
       ),
     );
   }

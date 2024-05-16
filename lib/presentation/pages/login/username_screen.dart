@@ -25,27 +25,27 @@ class UserNameScreen extends StatelessWidget {
               Center(
                 child: CommonText(
                   'Choose username',
-                  fontSize: 25.sp,
+                  fontSize: 25,
                   fontWeight: FontWeight.w500,
                   textColor: AppColors.whiteColor,
                 ),
               ),
               SizedBox(
-                height: 10.h,
+                height: 10,
               ),
               Center(
                 child: CommonText(
                   'you can always change it later ',
-                  fontSize: 14.sp,
+                  fontSize: 14,
                   fontWeight: FontWeight.w500,
                   textColor: AppColors.listGreyColor,
                 ),
               ),
               SizedBox(
-                height: 10.h,
+                height: 10,
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Container(
                     color: AppColors.listGreyColor,
                     child: CommonTextField(
@@ -54,21 +54,21 @@ class UserNameScreen extends StatelessWidget {
                     )),
               ),
               SizedBox(
-                height: 10.h,
+                height: 10,
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Container(
                     height: 40.h,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.r),
+                      borderRadius: BorderRadius.circular(10),
                       color: Colors.blue,
                     ),
                     child: Center(
                       child: Text(
                         "Next",
-                        style: TextStyle(color: AppColors.whiteColor, fontWeight: FontWeight.w500, fontSize: 17.sp),
+                        style: TextStyle(color: AppColors.whiteColor, fontWeight: FontWeight.w500, fontSize: 17),
                       ),
                     )),
               ),

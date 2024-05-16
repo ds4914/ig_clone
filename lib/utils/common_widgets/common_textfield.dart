@@ -21,6 +21,7 @@ class CommonTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      key: key,
       cursorColor: Colors.white,
       onChanged: onChanged,
       controller: controller,
@@ -28,10 +29,10 @@ class CommonTextField extends StatelessWidget {
       obscureText: obscureText ?? false,
       decoration: InputDecoration(
           contentPadding:
-              EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+              EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           suffix: suffixIcon,
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(10.r)),
+            borderRadius: BorderRadius.all(Radius.circular(10)),
             borderSide: BorderSide(color: Colors.white24, width: 0.0),
           ),
           focusColor: Colors.white24,

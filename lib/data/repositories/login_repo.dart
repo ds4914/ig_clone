@@ -40,8 +40,7 @@ class AuthRepo {
   }) async {
     await _apiClient.post(postUrl: ApiConstants.login, body: {"email": email, "password": password}).then((value) {
       onSuccess();
-      print('Success');
-      return loginResponseModelFromJson(jsonDecode(value));
+      return loginResponseModelFromJson(value);
     });
   }
 }

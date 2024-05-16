@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:newproject/utils/common_widgets/common_text.dart';
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
+  MyHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,58 +20,55 @@ class MyHomePage extends StatelessWidget {
                   children: [
                     Text(
                       "Instagram",
-                      style: TextStyle(color: Colors.white, fontSize: 22.sp),
+                      style: TextStyle(color: Colors.white, fontSize: 22),
                     ),
                     Row(
                       children: [
                         Icon(
                           Icons.favorite_border,
                           color: Colors.white,
-                          size: 30.sp,
+                          size: 30,
                         ),
                         SizedBox(
-                          width: 10.w,
+                          width: 10,
                         ),
                         Icon(
                           Icons.chat_outlined,
                           color: Colors.white,
-                          size: 30.sp,
+                          size: 30,
                         ),
                         SizedBox(
-                          width: 20.w,
+                          width: 20,
                         )
                       ],
                     ),
                   ],
                 ),
                 SizedBox(
-                  width: double.infinity.w,
-                  height: MediaQuery.of(context).size.height * 0.15.h,
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height * 0.15,
                   child: ListView.builder(
                       shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
                       itemCount: 10,
                       itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            children: [
-                              ClipOval(
-                                child: CircleAvatar(
-                                  child: Image.asset('assets/ig_logo.jpg'),
-                                  radius: 40.r,
-                                ),
+                        return Column(
+                          children: [
+                            ClipOval(
+                              child: CircleAvatar(
+                                child: Image.asset('assets/ig_logo.jpg'),
+                                radius: 40,
                               ),
-                              CommonText(
-                                'data',
-                              )
-                            ],
-                          ),
+                            ),
+                            CommonText(
+                              'data',
+                            )
+                          ],
                         );
                       }),
                 ),
                 SizedBox(
-                  width: double.infinity.w,
+                  width: double.infinity,
                   // height: MediaQuery.of(context).size.height * 0.75.h,
                   child: ListView.builder(
                       shrinkWrap: true,
@@ -83,20 +80,18 @@ class MyHomePage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Row(
                                     children: [
                                       ClipOval(
                                         child: CircleAvatar(
-                                          child:
-                                              Image.asset('assets/ig_logo.jpg'),
-                                          radius: 20.r,
+                                          child: Image.asset('assets/ig_logo.jpg'),
+                                          radius: 20,
                                         ),
                                       ),
                                       SizedBox(
-                                        width: 10.w,
+                                        width: 10,
                                       ),
                                       CommonText(
                                         'suthar_dinesh_19',
@@ -113,11 +108,10 @@ class MyHomePage extends StatelessWidget {
                                 child: Image.asset('assets/ig_logo.jpg'),
                               ),
                               SizedBox(
-                                height: 5.h,
+                                height: 5,
                               ),
                               Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Row(
                                     children: [
@@ -136,11 +130,11 @@ class MyHomePage extends StatelessWidget {
                                 ],
                               ),
                               SizedBox(
-                                height: 5.h,
+                                height: 5,
                               ),
                               CommonText('Liked by random_boy and 122 others'),
                               SizedBox(
-                                height: 5.h,
+                                height: 5,
                               ),
                               Row(
                                 children: [
@@ -149,7 +143,7 @@ class MyHomePage extends StatelessWidget {
                                     fontWeight: FontWeight.w600,
                                   ),
                                   SizedBox(
-                                    width: 5.w,
+                                    width: 5,
                                   ),
                                   CommonText('captions'),
                                 ],
@@ -163,70 +157,50 @@ class MyHomePage extends StatelessWidget {
                                         builder: (context) {
                                           return SingleChildScrollView(
                                             child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 10.w),
+                                              padding: EdgeInsets.symmetric(horizontal: 10),
                                               child: Column(
                                                 children: [
                                                   SizedBox(
-                                                    height: 5.h,
+                                                    height: 5,
                                                   ),
                                                   Container(
-                                                      height: 5.h,
-                                                      width: 100.w,
-                                                      decoration: BoxDecoration(
-                                                          color: Colors.white24,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      10.r))),
+                                                      height: 5,
+                                                      width: 100,
+                                                      decoration: BoxDecoration(color: Colors.white24, borderRadius: BorderRadius.circular(10.r))),
                                                   Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                     children: [
                                                       SizedBox(
-                                                        width: 40.w,
+                                                        width: 40,
                                                       ),
                                                       CommonText('Comments'),
-                                                      CommonIcon(
-                                                          Icons.more_vert)
+                                                      CommonIcon(Icons.more_vert)
                                                     ],
                                                   ),
                                                   ListView.builder(
                                                       shrinkWrap: true,
                                                       itemCount: 2,
-                                                      itemBuilder:
-                                                          (context, index) {
+                                                      itemBuilder: (context, index) {
                                                         return Row(
                                                           children: [
                                                             ClipOval(
-                                                              child:
-                                                                  CircleAvatar(
-                                                                child: Image.asset(
-                                                                    'assets/ig_logo.jpg'),
+                                                              child: CircleAvatar(
+                                                                child: Image.asset('assets/ig_logo.jpg'),
                                                                 radius: 20.r,
                                                               ),
                                                             ),
                                                             Column(
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
+                                                              crossAxisAlignment: CrossAxisAlignment.start,
                                                               children: [
-                                                                CommonText(
-                                                                    "commentor's_name"),
+                                                                CommonText("commentor's_name"),
                                                                 SizedBox(
-                                                                    width: MediaQuery.of(context)
-                                                                            .size
-                                                                            .width *
-                                                                        0.70.w,
-                                                                    child: CommonText(
-                                                                        'This is a Comment')),
+                                                                    width: MediaQuery.of(context).size.width * 0.70,
+                                                                    child: CommonText('This is a Comment')),
                                                               ],
                                                             ),
                                                             CommonIcon(
-                                                              Icons
-                                                                  .favorite_border_outlined,
-                                                              size: 18.sp,
+                                                              Icons.favorite_border_outlined,
+                                                              size: 18,
                                                             )
                                                           ],
                                                         );
