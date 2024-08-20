@@ -1,5 +1,4 @@
 import 'package:flutter/services.dart';
-import 'package:vidhyalaya_structure/shared/shared.dart';
 
 ///[CommonTextfield] is widget which is commonly used in app for showing textfield
 
