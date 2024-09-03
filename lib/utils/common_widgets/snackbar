@@ -1,0 +1,30 @@
+import '../../main.dart';
+import '../shared.dart';
+
+class SnackBarUtil {
+  static void showInSnackBar(BuildContext context, String value, {Color bgColors = AppColors.colorPrimary}) {
+    ScaffoldMessenger.of(context).removeCurrentSnackBar();
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(
+        value,
+        style: TextStyle(fontSize: 14.sp, fontFamily: FontFamily.gilroyMedium),
+      ),
+      backgroundColor: bgColors.withOpacity(0.9),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(25.r))),
+    ));
+  }
+  static void hideSnackBar(BuildContext context) {
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+  }
+}
+void showSnackBarUsingKey(String msg) {
+  snackBarKey.currentState!.removeCurrentSnackBar();
+  snackBarKey.currentState?.showSnackBar(SnackBar(
+    content: Text(
+      msg,
+      style: TextStyle(fontSize: 14.sp, fontFamily: FontFamily.gilroyMedium),
+    ),
+    backgroundColor: AppColors.colorPrimary.withOpacity(0.9),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(25.r))),
+  ));
+}
